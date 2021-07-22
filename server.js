@@ -6,9 +6,11 @@ const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 
-mongoose.connect('mongodb://localhost/blog', { 
-    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true
-})
+const db = 'mongodb+srv://saumya:ss%40123456@cluster0.4iave.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+mongoose.Promise = global.Promise;
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology:true })
+  .then(res => console.log("Connected to DB"))
+  .catch(err => console.log(err))
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
